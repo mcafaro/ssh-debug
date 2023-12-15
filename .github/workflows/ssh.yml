@@ -1,0 +1,22 @@
+name: SSH
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+  workflow_dispatch:
+  
+jobs:
+  ssh-job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v3
+      - name: Set up MATLAB
+        uses: matlab-actions/setup-matlab@v1
+      - name: Run codeIssues
+        uses: matlab-actions/run-command@v1
+        with:
+          command: result = codeIssues({'./matlab', './docker/matlab'}), assert(isempty(result.Issues))
+      - name: Setup upterm session
+        uses: lhotari/action-upterm@v1
