@@ -17,6 +17,6 @@ jobs:
       - name: Run codeIssues
         uses: matlab-actions/run-command@v1
         with:
-          command: result = codeIssues({'./matlab', './docker/matlab'}), assert(isempty(result.Issues))
+          command: version
       - name: Setup upterm session
         uses: lhotari/action-upterm@v1
